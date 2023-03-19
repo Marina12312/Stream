@@ -19,7 +19,13 @@ public class Main {
         (x,y)->x.compareTo(y),
                 (x,y)->System.out.println("мин"+x+"мах"+y));
         stream.close();
+
+        List<Integer> even= Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+        Long count=evenNumbers(even);
+        System.out.println("КОл-во четных числен" +count);
     }
+
+
     public static <T > void findMinMax(
             Stream<? extends T> stream,
             Comparator<? super T> order,
@@ -31,12 +37,11 @@ public class Main {
             minMaxConsumer.accept(null,null);
         }
     }
-    public static void evenNumbers (){
-        List<Integer> even= Arrays.asList(1,2,3,4,5,6,7,8,9,10);
-        List<Integer> evenNumbers= even.stream()
+    public static Long evenNumbers (List <Integer> even){
+return even.stream()
                 .filter(num -> num % 2 == 0)
-                .collect(Collectors.toList());
-        System.out.println(evenNumbers);
+                        .peek(num->System.out.println(num))
+        .count();
 
         }
 
